@@ -8,6 +8,10 @@ logger = logging.getLogger(__name__)
 
 
 class ImageHandler(tornado.web.StaticFileHandler):
+    def set_default_headers(self):
+        super().set_default_headers()
+        self.set_header("Access-Control-Allow-Origin", "*")
+
     def get_cache_time(self, *args):
         return self.CACHE_MAX_AGE
 
